@@ -1,0 +1,33 @@
+#destinatario{
+    display: none;
+}
+
+#gridContact{
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "flex-start"; 
+}
+
+#formMobile{
+    display: none;
+}
+@media screen and (max-width: 320px) {
+    #gridContact{
+        display: none;
+    }
+    #formMobile{
+        display: block;
+    }
+    
+}
+
+@media  screen and (min-width: 321px) and (max-width: 768px) {
+    #gridContact{
+        display: none;
+    }
+    
+    #formMobile{
+        display: block;
+    }
+}
+    

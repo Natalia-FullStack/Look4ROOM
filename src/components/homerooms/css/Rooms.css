@@ -1,0 +1,39 @@
+#roomCard{
+    max-width: 330px;
+}
+
+
+@media screen and (max-width: 390px) {
+    #roomCard{
+        max-width: 330px;
+    }
+
+    #roomCard .card-body{
+        padding: 0.5rem;
+    }
+}
+    
+
+/* <!--Cards responsive para portatil --> */
+
+@media screen and (min-width:992px)  {
+    #roomCard{
+        max-width: 240px;
+    }
+
+    /* #roomCard .card-body{
+        padding: 0.5rem;
+    } */
+    #buttonshow{
+        width: 2px;
+    }
+}
+
+@media screen and (min-width: 1800px)  {
+    #roomCard{
+        max-width: 330px;
+    }
+
+    
+   
+}

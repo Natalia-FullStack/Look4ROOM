@@ -1,0 +1,41 @@
+@media only screen and (min-width: 120px) and (max-width: 359px) {
+    #buttonAnnounce, #register, #login{
+        display:none;
+    }
+
+ 
+
+}
+
+@media only screen and ((min-width: 360px) and (max-width: 819px)) {
+    #buttonAnnounce, #register, #login{
+        display:none;
+    }
+
+    
+
+    #searchmobile{
+        display: none;
+    }
+
+}
+
+@media only screen and ((min-width: 820px) and (max-width: 1180px)) {
+    #buttonAnnounce, #register, #login{
+        display:block;
+    }
+
+    #searchmobile{
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 1181px) {
+  
+
+    #searchmobile{
+        display: none;
+    }
+
+}
