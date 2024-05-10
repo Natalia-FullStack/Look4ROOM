@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase.config";
-import { addDoc, collection, getDocs, or, query, where } from "firebase/firestore";
+import { collection, getDocs, or, query, where } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import Nav from "../components/navbar/Nav";
 import { Button, Card, Container, Input, Loading, Row, Spacer, Text } from "@nextui-org/react";
@@ -159,8 +159,7 @@ if(!habitaciones.length){
               
 
       </Container>
-      
-
+    
     </ul>
  
       }
