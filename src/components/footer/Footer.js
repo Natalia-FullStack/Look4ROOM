@@ -1,77 +1,90 @@
-import {
-    Box,
-    chakra,
-    Container,
-    Flex,
-    Stack,
-    Text,
-    useColorModeValue,
-    VisuallyHidden,
-  } from '@chakra-ui/react';
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { ReactNode } from 'react';
-  
-  const SocialButton = ({
-    children,
-    label,
-    href,
-  }) => {
-    return (
-      <chakra.button
-        bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-        rounded={'full'}
-        w={8}
-        h={8}
-        cursor={'pointer'}
-        as={'a'}
-        href={href}
-        display={'inline-flex'}
-        alignItems={'center'}
-        justifyContent={'center'}
-        transition={'background 0.3s ease'}
-        _hover={{
-          bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
-        }}>
-        <VisuallyHidden>{label}</VisuallyHidden>
-        {children}
-      </chakra.button>
-    );
-  };
-  
-  export default function Footer() {
-    return (
 
-      <Box
-        bg={useColorModeValue('gray.50', 'gray.900')}
-        color={useColorModeValue('gray.700', 'gray.200')}
-        as="footer"
-        pos="absolute"
-        bottom="0"
-        left="0"
-        right="0">
-        
-        <Container
-          as={Stack}
-          maxW={'6xl'}
-          py={4}
-          
-          direction={{ base: 'column', md: 'row' }}
-          spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
-          align={{ base: 'center', md: 'center' }}>
-          <Text>© 2024 Look4ROOM. Todos los derechos reservados</Text>
-          <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <FaTwitter />
-            </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
-            </SocialButton>
-            <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram />
-            </SocialButton>
-          </Stack>
-        </Container>
-      </Box>
-    );
-  }
+import {
+  Box,
+  chakra,
+  Container,
+  Stack,
+  Text,
+  useColorModeValue,
+  VisuallyHidden,
+} from '@chakra-ui/react';
+import { FaInstagram, FaTwitter, FaFacebook,FaYoutube } from 'react-icons/fa';
+
+const SocialButton = ({ children, label, href, bgColor, hoverBgColor }) => {
+  const defaultBg = useColorModeValue('blackAlpha.100', 'whiteAlpha.100');
+  const defaultHoverBg = useColorModeValue('blackAlpha.200', 'whiteAlpha.200');
+
+  const buttonBg = bgColor || defaultBg;
+  const buttonHoverBg = hoverBgColor || defaultHoverBg;
+
+  return (
+    <chakra.button
+    bg={buttonBg}
+    rounded={'full'}
+    w={8}
+    h={8}
+    cursor={'pointer'}
+    as={'a'}
+    href={href}
+    display={'inline-flex'}
+    alignItems={'center'}
+    justifyContent={'center'}
+    transition={'background 0.3s ease'}
+      _hover={{
+        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
+      }}
+    >
+      <VisuallyHidden>{label}</VisuallyHidden>
+      {children}
+    </chakra.button>
+  );
+};
+
+export default function Footer() {
+  return (
+    <Box
+    bg={useColorModeValue('gray.100', 'gray.800')}
+    color={useColorModeValue('gray.700', 'gray.200')}
+      as="footer"
+      pos="absolute"
+      bottom="0"
+      left="0"
+      right="0"
+    >
+      <Container
+        as={Stack}
+        maxW={'6xl'}
+        py={4}
+        direction={{ base: 'column', md: 'row' }}
+        spacing={4}
+        justify={{ base: 'center', md: 'space-between' }}
+        align={{ base: 'center', md: 'center' }}>
+      
+           <Text> © 2024 Look4ROOM.  Todos los derechos reservados</Text>
+        <Stack direction={'row'} spacing={6}>
+          <SocialButton
+            label={'Twitter'}
+            href={'#'}
+            bgColor={'#2fabe5'}
+            hoverBgColor={'#229ccc'}
+          >
+            <FaTwitter />
+          </SocialButton>
+         
+          <SocialButton label={'Instagram'} href={'#'} bgColor={'#2fabe5'} hoverBgColor={'#229ccc'}>
+            <FaInstagram />
+
+          </SocialButton>
+
+          <SocialButton label={'Facebook'} href={'#'} bgColor={'#2fabe5'} hoverBgColor={'#229ccc'}>
+            <FaFacebook />
+          </SocialButton>
+
+          <SocialButton label={'Youtube'} href={'#'} bgColor={'#2fabe5'} hoverBgColor={'#229ccc'}>
+            <FaYoutube />
+          </SocialButton>
+        </Stack>
+      </Container>
+    </Box>
+  );
+}

@@ -94,7 +94,9 @@ if (loading) {
   return <><Nav/><Center><Spacer y={2}/><Loading /></Center></>;
 }
 if(!habitaciones.length){
-  return <><Nav/> <Center><Text h1 color="error">Error</Text></Center> <Center><Text h2>No se encontraron resultados para "{searchTerm}"</Text></Center><Center><Text h3>Prueba utilizando otra palabra clave</Text></Center></>
+  return <><Nav/> <Center><Text h1 color="warning">¡Ups!</Text></Center> 
+  <Center><Text h2>No se encontraron resultados para "{searchTerm}"</Text></Center>
+  <Center><Text h3>Prueba utilizando otra palabra clave</Text></Center></>
 }
 
 

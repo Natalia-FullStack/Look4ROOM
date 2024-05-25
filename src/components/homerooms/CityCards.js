@@ -41,7 +41,7 @@ const listaCiudades = [
     
     <Card isHoverable isPressable  id="roomCard" style={{
       width: "290px",
-      margin: "25px", // Agrega un margen de 10px alrededor de cada tarjeta
+      margin: "25px",  
     }}
     >
         <Card.Image

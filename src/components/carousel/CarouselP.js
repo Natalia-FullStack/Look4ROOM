@@ -32,15 +32,17 @@ export default function CarouselP() {
 
   const cards = [
     {
-      title: 'Explora y encuentra tu habitacion ideal para vivir',
-      image:
-        'https://img.freepik.com/foto-gratis/colegas-haciendo-trabajo-equipo-proyecto_23-2149361542.jpg?size=626&ext=jpg&ga=GA1.1.1687694167.1714089600&semt=ais',
-    },
-    {
-      title: 'Conectar espacios, enriquecer vivencias',
   
+      title: 'Conectar espacios, enriquecer vivencias',
+      
       image:
         'https://img.freepik.com/foto-gratis/gente-bebiendo-kombucha-reunion_23-2150168498.jpg?size=626&ext=jpg&ga=GA1.1.1488620777.1712188800&semt=ais',
+   
+    },
+    {
+      title: 'Explora y encuentra tu habitacion ideal para vivir',
+      image:
+      'https://img.freepik.com/foto-gratis/colegas-haciendo-trabajo-equipo-proyecto_23-2149361542.jpg?size=626&ext=jpg&ga=GA1.1.1687694167.1714089600&semt=ais',
     },
     
   ];

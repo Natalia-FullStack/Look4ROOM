@@ -82,11 +82,12 @@ export default function RoomsMadrid(){
         >
       {habitaciones.slice(0,3).map((habitacion, index)=> (
         <>
-        <Link to={`/habitacion/${habitacion.idHabitacion}`}><Card isHoverable isPressable key={index}  id="roomCard" css={{w:"290px"}}>
+        <Link to={`/habitacion/${habitacion.idHabitacion}`}><Card isHoverable isPressable key={index}  id="roomCard" css={{w:"290px", h:"400px"}}>
         <Card.Image
                 src={`${habitacion.imagenes[0]}`}
                     objectFit="cover"
                     width="100%"
+                    height="190px"
                 />
           <Card.Header>
             <Text b>Habitación {habitacion.tipoHabitacion}</Text>

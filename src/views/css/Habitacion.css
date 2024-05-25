@@ -1,33 +1,79 @@
-#destinatario{
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  #main-content {
+    flex-grow: 1;
+  }
+  
+  #destinatario {
     display: none;
-}
-
-#gridContact{
-    display: "flex";
-    flex-direction: "column";
-    justify-content: "flex-start"; 
-}
-
-#formMobile{
+  }
+  
+  #gridContact {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  #formMobile {
     display: none;
-}
-@media screen and (max-width: 320px) {
-    #gridContact{
-        display: none;
-    }
-    #formMobile{
-        display: block;
-    }
-    
-}
+  }
+  #mapa{
+    margin-bottom: 100px; 
+  }
 
-@media  screen and (min-width: 321px) and (max-width: 768px) {
-    #gridContact{
-        display: none;
+  #Footer {
+    margin-top: auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    #gridContact {
+      display: none;
+    }
+    #heart, #compartir {
+      display: flex;
+      flex-direction: column;  
+      justify-content: center; 
+      align-items: center; 
+      min-height: 66px;
     }
     
-    #formMobile{
-        display: block;
+    #compartir {
+      order: 2; 
+      min-width: 100px;
     }
-}
     
+    #heart {
+      order: 0;
+      min-width: 120px;
+    }
+    
+    
+    #formMobile {
+      display: block;
+      padding: 0 15px; 
+      margin-bottom: 160px; 
+    }
+  
+    #Footer {
+      margin-top: auto;
+    }
+  }
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    #gridContact {
+      display: none;
+    }
+  
+    #formMobile {
+      display: block;
+      margin-bottom: 160px;
+    }
+  
+    #Footer {
+      margin-top: auto;
+    }
+  }
+  

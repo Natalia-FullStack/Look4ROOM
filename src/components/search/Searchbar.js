@@ -27,7 +27,7 @@ export const Searchbar = () => {
        
       />     
       
-      <Button color="primary" onClick={handleClick} auto><AiOutlineSearch/></Button>
+      <Button style={{ backgroundColor: '#2fabe5'}} onClick={handleClick} auto><AiOutlineSearch/></Button>
      
 </Container>
 

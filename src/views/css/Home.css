@@ -1,12 +1,25 @@
 @media screen and (max-width: 320px) {
-    #vermas, #spacer{
-          display: none;
+    #spacer, #vermas {
+        display: none;
     }
- 
- }
- 
- @media  screen and (min-width: 321px) and (max-width: 768px) {
-     #vermas, #spacer{
-         display: none;
-   }
- }
+    #madrid, #barcelona, #ciudades {
+        display: flex;
+        justify-content: center;
+    }
+    #Footer {
+        margin-top: 25px;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 768px) {
+    #spacer, #vermas {
+        display: none;
+    }
+    #madrid, #barcelona, #ciudades {
+        display: flex;
+        justify-content: center;
+    }
+    #Footer {
+        margin-top: 25px;
+    }
+}

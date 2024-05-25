@@ -16,13 +16,16 @@ import { Icon } from 'leaflet';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { FaShare } from 'react-icons/fa';
 import './css/Habitacion.css'
+import { HeartIcon } from '../components/homerooms/HeartIcon';
 import emailjs from 'emailjs-com';
+import { useAuth } from '../auth/authContext';
 
 
 export default function Habitacion() {
   const { idHabitacion } = useParams();
   const idHabitacionNum = parseInt(idHabitacion);
-
+  const auth=useAuth();
+  const user=auth.user;
 
 
   const [habitaciones, setHabitaciones] = useState([]);
@@ -30,7 +33,7 @@ export default function Habitacion() {
  
   const [visible, setVisible] = useState(false);
   const [avatarId, setAvatarId] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6pwdR-qoPy9qi-a4Vlk-3lbd8nK1KZ3b1o6WPdumMxNJ2V8DU");
 
   const handler = () => setVisible(true);
 
@@ -108,6 +111,60 @@ export default function Habitacion() {
     });
   }; 
 
+
+  const agregarAFavoritos = async (habitacion) => {
+    try {
+    const user = auth.user;
+    
+      if (!user) {
+        toast.error("Debes iniciar sesión para añadir a favoritos");
+        
+        return;
+      } 
+
+
+      const docData = {
+        ...habitacion,
+        usuarioUID: user.uid
+      };
+      const favoritosRef = collection(db, "favoritos");
+      const querySnapshot = await getDocs(
+        query(favoritosRef, where("tipoHabitacion", "==", habitacion.tipoHabitacion), where("direccion.ciudad", "==", habitacion.direccion.ciudad), 
+        where("precio", "==", habitacion.precio), where("idHabitacion", "==", habitacion.idHabitacion))
+      );
+      if (!querySnapshot.empty) {
+        toast.info("Esta habitación ya está en tu lista de favoritos");
+        return;
+      }
+
+      
+      const docRef = await addDoc(favoritosRef, docData);
+      toast.success("¡Has añadido esta habitación a tu lista de favoritos!");
+    } catch (error) {
+      
+        toast.error("Esta habitación ya está en tu lista de favoritos");
+      
+    }
+  };
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const avatarRef = ref(storage, `avatars/${avatarId}.png`);
   getDownloadURL(avatarRef)
     .then((url) => {
@@ -174,10 +231,15 @@ export default function Habitacion() {
     </Container>
     <Spacer y={1}/>
     <Box display="flex"  >
-     
+    <Button id="heart"
+        auto
+        color="error"
+        icon={<HeartIcon fill="currentColor" filled />}
+        onPress={() => agregarAFavoritos(habitacion)}
+      >Añadir a favoritos</Button>
       <Spacer x={1} />
 
-      <Button 
+      <Button id="compartir"
      auto
       color="primary"
       onPress={handler}
@@ -192,7 +254,7 @@ export default function Habitacion() {
 
               <Text h3>Localización</Text>
               <Text size={18}>La habitación se encuentra en {habitacion.direccion.calle}, {habitacion.direccion.numero}.</Text>
-                {loading ? <Loading/> :<MapContainer center={mapCenter} zoom={15} style={{ width: '100%', height: '300px' }}>
+                {loading ? <Loading/> :<MapContainer id="mapa" center={mapCenter} zoom={15} style={{ width: '100%', height: '300px' }}>
     <TileLayer
       attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -207,23 +269,22 @@ export default function Habitacion() {
       </Popup>
     </Marker>
   </MapContainer>
-  
   }
   <Spacer y={2.5}/>
-    <form onSubmit={sendEmail}id='formMobile'>
+    <form onSubmit={sendEmail}id='formMobile' style={{border: '1px solid #000', borderRadius: '6px', padding: '20px'}}>
 
   <Box display="flex" flexDirection="row" >
       <Avatar src={avatarUrl} size="lg" />
     
-        <Text h3>Contactar con {habitacion.nombreVendedor}</Text>
+        <Text h5>Contactar con {habitacion.nombreVendedor}</Text>
         </Box>
         <Spacer y={1} />
-        <Input type="text" name="nombre" width='375px' isBordered readOnly  label="Nombre" /> : <Input width='375px' required={true} label="Nombre" placeholder="Nombre" />
+        <Input width='140px' required={true} label="Nombre" placeholder="Nombre" />
         <Spacer y={0.8} />
-        <Input type="email" name="email" width='375px' label="Correo electrónico" isBordered readOnly /> : <Input width='375px' required={true} label="Correo electrónico" placeholder="Correo electrónico" />
+        <Input width='140px' required={true} label="Correo electrónico" placeholder="Correo electrónico" />
         <Spacer y={0.8} />
         <div id='destinatario'>
-        <Input required={true} name="destinatario" width='375px' label="Destinatario" value={habitacion.emailVendedor} isBordered readOnly />
+        <Input required={true} name="destinatario" width='15px' label="Destinatario" value={habitacion.emailVendedor} isBordered readOnly />
         </div>
         <Spacer y={2} />
         
@@ -237,25 +298,35 @@ export default function Habitacion() {
 />
 
 <Spacer y={2} />
-<Button type="submit" auto color="primary" >Enviar correo</Button>
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <Button type="submit" auto color="primary">Enviar correo</Button>
+</div>
 </form>
 
               </Grid>
               <Grid xs={3} css={{ display: "flex", flexDirection: "column", justifyContent: "flex-start" }} id='gridContact'>
   <Card isHoverable borderWeight='normal' variant="bordered" css={{ mw: "400px" }}>
   
-=  <form onSubmit={sendEmail}>
-  <div style={{ marginLeft: '10px', marginRight: '10px' }}>
-    <Spacer y={0.5} />
+
+
+
+
+
+<form onSubmit={sendEmail} >
+
+
+  <div style={{ marginLeft: '10px', marginRight: '5px' }}>
+
+    <Spacer y={1} />
     <Box display="flex" flexDirection="row">
       <Avatar src={avatarUrl} size="lg" />
-      <Text h3>Contactar con {habitacion.nombreVendedor}</Text>
+      <Text h3>   Contactar con {habitacion.nombreVendedor}</Text>
     </Box>
 
     <Spacer y={1} />
-      <Input width='200px' required={true} label="Nombre" placeholder="Nombre" />
+      <Input width="100%"required={true} label="Nombre" placeholder="Nombre" />
     <Spacer y={0.8} />
-      <Input width='200px' required={true} label="Correo electrónico" placeholder="Correo electrónico" />
+      <Input width="100%" required={true} label="Correo electrónico" placeholder="Correo electrónico" />
     <Spacer y={0.8} />
     <div id="destinatario">
       <Input required={true} name="destinatario" width='200px' label="Destinatario" value={habitacion.emailVendedor} isBordered readOnly />
@@ -304,16 +375,23 @@ export default function Habitacion() {
 <Modal.Body>
   
 <Spacer y={0.5} />
-<Input type="text" width='100%' isBordered readOnly  label="Enlace" />
+<Input type="text" width='100%' isBordered readOnly  label="Enlace" value={`https://tfg-natalia2024.firebaseapp.com/habitacion/${idHabitacionNum}`} />
 <Spacer y={1} />
 
 </Modal.Body>
 {}
       </Modal>     
           </div>
+          
         ))}
+                  
       </>
-      <Footer />
+
+      <Footer id="Footer"/>
+
+         
     </div>
+    
   );
+
 }
