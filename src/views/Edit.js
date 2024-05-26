@@ -15,7 +15,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Link, useParams } from "react-router-dom";
 import Habitacion from "./Habitacion";
 import Footer from "../components/footer/Footer";
-
+import "./css/Home.css";
 
 
 
@@ -162,7 +162,6 @@ const handleSubmit = async () => {
 return (
   <>
     <Nav />
-
     <Spacer y={1} />
 
     <Center>
@@ -181,6 +180,222 @@ return (
       </Center>
     ) : (
       <>
+       <div id="mobile">
+        <Container
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-end"
+            width="100%"
+        >
+           <Card css={{ /* $$cardColor: '$colors$primary' */ mw: "40rem", width:"40rem", }}>
+        <Card.Body>
+        <Spacer y={0.01} />
+        <Text h4 weight={"bold"}>¿Dónde está la habitación?</Text>
+          <Spacer y={0.01} />
+         
+        </Card.Body>
+      </Card>
+          <Spacer y={1} />
+          <Container
+             display="flex"
+             flexDirection="column"
+             alignItems="flex-end"
+             width="100%">
+            <Input
+              label="Calle"
+              clearable
+              placeholder={calle || habitacion.direccion?.calle || ""}
+              width="20rem"
+              onChange={(e) => setCalle(e.target.value)}
+            />
+            <Spacer x={7} />
+            <Input
+              label="Número"
+              clearable
+              placeholder={numero || habitacion.direccion?.numero || ""}
+              width="10rem"
+              onChange={(e) => setNumero(e.target.value)}
+            />
+          </Container>
+
+          <Spacer y={2} />
+
+          <div>
+            <Text weight="normal" h5>
+              Comunidad autónoma
+            </Text>
+            <Select
+              value={selectedCommunity}
+              onChange={handleCommunityChange}
+              isRequired={true}
+              width="22rem"
+            >
+              <option value={null}></option>
+              {Object.keys(Data).map((community) => (
+                <option key={community} value={community}>
+                  {community}
+                </option>
+              ))}
+            </Select>
+            {selectedCommunity && (
+              <div>
+                <Spacer y={1} />
+                <Text weight="normal" h5>
+                  Ciudad
+                </Text>
+                <Select
+                  value={selectedCity}
+                  onChange={(e) => setCiudad(e.target.value)}
+                  isRequired={true}
+                >
+                  <option value={null}>Selecciona una ciudad</option>
+                  {Data[selectedCommunity].map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+            )}
+          </div>
+
+          <Spacer y={2} />
+
+          <Card css={{ /* $$cardColor: '$colors$primary' */ mw: "40rem", width:"40rem", }}>
+        <Card.Body>
+        <Spacer y={0.01} />
+        <Text h4 weight={"bold"}>Datos generales de la habitación</Text>
+          <Spacer y={0.01} />
+         
+        </Card.Body>
+      </Card>
+          <Spacer y={2} />
+
+          <Textarea
+            clearable
+            label="Descripción de la habitación"
+            placeholder={descripcion || habitacion.descripcion || ""}
+            onChange={(e) => setDescripcion(e.target.value)}
+            minRows={6}
+            minCols={6}
+            width="40rem"
+            isRequired={true}
+          />
+          <Spacer y={3} />
+          <Center>
+          <Text h5>¿Qué tipo de habitación es?<br/>Selección anterior: {habitacion.tipoHabitacion}</Text>
+          </Center>
+          
+          <Spacer y={3}/> 
+          <Radio.Group
+            size="xs"
+            defaultValue="Individual"
+            orientation="horizontal"
+            value={tipoHabitacion || habitacion.tipoHabitacion || ""}
+            isRequired={true}
+            onChange={setTipoHabitacion}
+          >
+            <Radio value="Individual">Habitación individual</Radio>
+            <Radio value="Compartida">Habitación compartida</Radio>
+          </Radio.Group>
+
+          <Spacer y={3} />
+
+          <Text h5>Características</Text>
+
+          <Container
+            fluid
+            display="inline-flex"
+            justify="center"
+          >
+            <Checkbox color="success" value={wifi} size="sm" onChange={setWifi}>
+              <AiOutlineWifi />&nbsp;Wifi
+            </Checkbox>
+            <Spacer x={1} />
+            <Checkbox color="success" value={cocina} size="sm" onChange={setCocina}>
+              <MdOutlineKitchen />&nbsp;Cocina
+            </Checkbox>
+            <Spacer x={1} />
+            <Checkbox color="success" value={ascensor} onChange={setAscensor} size="sm">
+              <GrElevator />&nbsp;Ascensor
+            </Checkbox>
+          </Container>
+
+          <Spacer y={1} />
+
+          <Container
+            fluid
+            display="inline-flex"
+            justify="center"
+          >
+            <Checkbox color="success" value={calefaccion} onChange={setCalefaccion} size="sm">
+              <RiTempHotLine />&nbsp;Calefacción
+            </Checkbox>
+            <Spacer x={1} />
+            <Checkbox color="success" value={terraza} onChange={setTerraza} size="sm">
+              <MdBalcony />&nbsp;Terraza
+            </Checkbox>
+            <Spacer x={1} />
+            <Checkbox color="success" value={tv} onChange={setTv} size="sm">
+              <GrChannel />&nbsp;TV
+            </Checkbox>
+          </Container>
+          
+          <Spacer y={2} />
+
+          <Card css={{ /* $$cardColor: '$colors$primary' */ mw: "40rem", width:"40rem", }}>
+        <Card.Body>
+        <Spacer y={0.01} />
+        <Text h4 weight={"bold"}>Precio</Text>
+          <Spacer y={0.01} />
+         
+        </Card.Body>
+      </Card>
+
+          <Spacer y={2} />
+          <Input
+            label="Coste al mes"
+            type="number"
+            clearable
+            width="40rem"
+            placeholder={precio || habitacion.precio || ""}
+            onChange={(e) => setPrecio(e.target.value)}
+            isRequired={true}
+          />
+
+
+          {/* <Card css={{ mw: "40rem", width: "40rem", height: "5rem" }}>
+            <Card.Body>
+              <Text h5>Fotos</Text>
+            </Card.Body>
+          </Card>
+
+          <Spacer y={2} />
+
+          <Input type="file" required onChange={handleImageChange}/> */}
+
+          <Spacer y={2} />
+
+          <Button onPress={handleSubmit} type="submit"   colorScheme="blue"
+                  style={{ display: 'block', margin: '0 auto' }}>
+            Actualizar anuncio
+          </Button>
+          <Spacer y={3} />
+        </Container>
+        <Spacer y={2} />
+
+        </div>
+
+    
+      </>
+          
+    )
+
+    
+    }
+    
+
+    <div id="ordenador">
         <Container
           fluid
           display="flex"
@@ -376,16 +591,15 @@ return (
 
           <Input type="file" required onChange={handleImageChange}/> */}
 
-          <Spacer y={2} />
+          <Spacer y={1} />
 
           <Button onPress={handleSubmit} type="submit" color="primary" auto>
             Actualizar anuncio
           </Button>
         </Container>
-      </>
-    )}
+        </div>
 
-    <Spacer y={2} />
+    <Spacer y={5} />
 
     <Footer />
 

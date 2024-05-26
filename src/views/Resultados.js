@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase.config";
-import { collection, getDocs, or, query, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, or, query, where } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import Nav from "../components/navbar/Nav";
 import { Button, Card, Container, Input, Loading, Row, Spacer, Text } from "@nextui-org/react";
 import { Box, Center, Select } from "@chakra-ui/react";
+import { HeartIcon } from "../components/homerooms/HeartIcon";
+import { useAuth } from "../auth/authContext";
 import { toast } from "react-hot-toast";
 import Footer from "../components/footer/Footer";
-import { useAuth } from "../auth/authContext"
+
+
 
 export const Resultados = () => {
   const auth = useAuth();
@@ -144,11 +147,12 @@ if(!habitaciones.length){
         >
      {habitaciones.map((habitacion, index)=> (
         <>
-        <Link to={`/habitacion/${habitacion.idHabitacion}`}><Card isHoverable isPressable key={index}  id="roomCard" css={{w:"290px"}}>
+        <Link to={`/habitacion/${habitacion.idHabitacion}`}><Card isHoverable isPressable key={index}  id="roomCard" css={{w:"290px", h:"400px"}}>
         <Card.Image
                 src={`${habitacion.imagenes[0]}`}
-                    objectFit="cover"
-                    width="100%"
+                objectFit="cover"
+                width="100%"
+                height="190px"
                 />
           <Card.Header>
             <Text b>Habitación {habitacion.tipoHabitacion}</Text>

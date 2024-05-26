@@ -17,6 +17,8 @@ import { Link } from "react-router-dom";
 import { Row } from "react-day-picker";
 import { CityCards } from "../components/homerooms/CityCards";
 import "./css/Home.css";
+import { Searchbar } from "../components/search/Searchbar.js";
+
 export default function Home(){
     
 
@@ -24,7 +26,11 @@ export default function Home(){
         <div>
             <Nav/>
             <Flex minH="100vh" flexDirection="column" justifyContent="space-between">
- 
+            <Center id="mobile">
+            <Spacer y={1}/>
+            <Searchbar id="searchbar" />
+            <Spacer y={1}/>
+            </Center>
            <CarouselP/>
            <Spacer y={2}/>
            <Center>

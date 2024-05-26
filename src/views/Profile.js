@@ -50,6 +50,7 @@ export default function Profile(){
       </TabPanels>
     </Tabs>
     </Center>
+    <Spacer y={4}/>
       <Footer/>
       </Box>
         </div>
