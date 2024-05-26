@@ -386,8 +386,9 @@ export default function Habitacion() {
         ))}
                   
       </>
+      <Spacer y={2}/>   
 
-      <Footer id="Footer"/>
+      <Footer/>
 
          
     </div>

@@ -28,8 +28,20 @@ export default function Home(){
            <CarouselP/>
            <Spacer y={2}/>
            <Center>
-            
-            <Text size={30} id="madrid" weight={"bold"} >Habitación en Madrid</Text> <Spacer x={13}/>
+           <div id="text">
+          <br/>
+           <Text size={30} id="madrid" weight={"bold"} >Habitaciones en Madrid</Text> <Spacer x={13}/>
+          </div>
+
+
+          
+           <Center id="mobile">
+            <Text size={30} id="madrid" weight={"bold"} >Habitaciones en Madrid</Text> <Spacer x={13}/>
+            </Center>
+            <div class="espacio">
+            <Spacer x={14}/>
+            </div>
+
             <div id="vermas">
             
             <Link to={`/results/Madrid`}><Button  style={{ backgroundColor: '#2fabe5'}} auto>Ver más</Button></Link>
@@ -40,9 +52,30 @@ export default function Home(){
           <Slide triggerOnce>
             <RoomsMadrid />
             </Slide>
+
+            <div id="mobile">
+              <Center>
+            <Link to={`/results/Madrid`}><Button  style={{ backgroundColor: '#2fabe5'}} auto>Ver más</Button></Link>
+            </Center>
+            </div>
+          
+
             <Spacer y={3}/>
       <Center>
-              <Text size={30} id="barcelona" weight={"bold"} >Habitación en Barcelona</Text><Spacer x={13}/>
+        <div id="text">
+        <br/>
+      <Text size={30} id="barcelona" weight={"bold"} >Habitaciones en Barcelona</Text><Spacer x={13}/>
+      </div>
+      <Center id="mobile">
+
+              <Text size={30} id="barcelona" weight={"bold"} >Habitaciones en Barcelona</Text>
+
+              </Center>
+              <div class="espacio">
+            <Spacer x={14}/>
+            </div>
+
+
               <div id="vermas">
 
               <Link to={`/results/Barcelona`}><Button style={{ backgroundColor: '#2fabe5'}} auto>Ver más </Button></Link>
@@ -52,7 +85,11 @@ export default function Home(){
               <Spacer y={0.3}/>
               <Slide triggerOnce>
               <RoomsBarcelona/></Slide>
-
+              <div id="mobile">
+              <Center>
+              <Link to={`/results/Barcelona`}><Button style={{ backgroundColor: '#2fabe5'}} auto>Ver más </Button></Link>
+              </Center>
+              </div>
               <Spacer y={3}/>
               <Center>
 
@@ -62,7 +99,7 @@ export default function Home(){
               <Spacer y={0.2}/>
 <CityCards/>
 
-<Spacer y={3 }/>
+<Spacer y={6}/>
 <div id="Footer">
             <Footer/>
             </div>

@@ -94,7 +94,7 @@ export default function Nav() {
   const collapseItems = [
     <Link href="/" color="inherit">Inicio</Link>,
     <Link onPress={handler} color="inherit">Iniciar sesión</Link>,
-    <Link href="register" color="inherit">Registrarse</Link>,
+    <Link href="register" color="warning">Registrarse</Link>,
   ];
 
   const collapseAccount = [
@@ -317,7 +317,9 @@ export default function Nav() {
         aria-labelledby="modal-title"
         open={visibleForgot}
         onClose={closeForgot}
+      
       >
+      <Toaster/>
         <Modal.Header>
           <Text id="modal-title" b size={18}>
             ¡Introduce tu email para que puedas reestablecer la contraseña!

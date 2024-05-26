@@ -21,7 +21,7 @@ export const Searchbar = () => {
       <Input
         type="text"
         width="280px"
-        placeholder="Busca por tu ciudad"
+        placeholder="Busca por ciudad"
         onChange={(e) => setSearchTerm(e.target.value)}
         clearable
        

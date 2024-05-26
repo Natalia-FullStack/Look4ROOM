@@ -1,25 +1,47 @@
+#mobile{
+    display: none;
+}
+
 @media screen and (max-width: 320px) {
-    #spacer, #vermas {
+    #spacer, #text, #espacio{
         display: none;
     }
     #madrid, #barcelona, #ciudades {
         display: flex;
         justify-content: center;
+        flex-direction: column;  
+        align-items: center; 
+        text-align: center; 
     }
-    #Footer {
-        margin-top: 25px;
+    #ciudades {
+        margin-bottom: 160px;
+    }
+    #vermas {
+        display: none;
+    }
+    #mobile{
+        display:block;
     }
 }
 
 @media screen and (min-width: 321px) and (max-width: 768px) {
-    #spacer, #vermas {
+    #spacer, #text, .espacio{
         display: none;
     }
     #madrid, #barcelona, #ciudades {
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        align-items: center; 
+        text-align: center; 
     }
-    #Footer {
-        margin-top: 25px;
+    #ciudades {
+        margin-bottom: 160px;
+    }
+    #vermas {
+        display: none;
+    }
+    #mobile{
+        display: block;
     }
 }

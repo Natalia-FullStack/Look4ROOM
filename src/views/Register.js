@@ -156,7 +156,6 @@ export default function Register(){
         </Container>
              <br></br> 
              <br></br>  <br></br>   
-        <Footer/>
 
         {/* POLÍTICA DE PRIVACIDAD */	}
               
@@ -243,7 +242,8 @@ export default function Register(){
         </Modal.Body>
       
        </Modal>
-  
+    <Spacer y={2}/>   
+       <Footer/>
        
               </div>
           

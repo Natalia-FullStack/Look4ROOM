@@ -7,9 +7,10 @@ import { Button, Card, Container, Input, Loading, Row, Spacer, Text } from "@nex
 import { Box, Center, Select } from "@chakra-ui/react";
 import { toast } from "react-hot-toast";
 import Footer from "../components/footer/Footer";
-
+import { useAuth } from "../auth/authContext"
 
 export const Resultados = () => {
+  const auth = useAuth();
 
   const {searchTerm}=useParams();
  
@@ -19,7 +20,7 @@ const [loading, setLoading] = useState(false);
 const [numero, setNumero]=useState("");
 const [tipo, setTipo]=useState("");
 
-console.log(tipo);
+
 
 function normalizeString(str) {
   return str
@@ -48,7 +49,7 @@ useEffect(() => {
   }
 
   getHabitaciones();
-}, [searchTerm]);
+}, [normalizeString(searchTerm)]);
 
 
 const filtrarPrecio = async () => {
@@ -94,11 +95,23 @@ if (loading) {
   return <><Nav/><Center><Spacer y={2}/><Loading /></Center></>;
 }
 if(!habitaciones.length){
-  return <><Nav/> <Center><Text h1 color="warning">¡Ups!</Text></Center> 
-  <Center><Text h2>No se encontraron resultados para "{searchTerm}"</Text></Center>
-  <Center><Text h3>Prueba utilizando otra palabra clave</Text></Center></>
-}
-
+  return (
+    <>
+      <Nav />
+      <Center>
+        <Text h1 color="warning">Ups...</Text>
+      </Center>
+      <Center>
+        <Text h2>No se han encontrado resultados para "{searchTerm}"</Text>
+      </Center>
+      <Center>
+        <Text h3>Prueba con otra búsqueda</Text>
+      </Center>
+      <Spacer y={16} />
+      <Footer />
+    </>
+  );
+}  
 
   
     return (
@@ -161,17 +174,14 @@ if(!habitaciones.length){
               
 
       </Container>
-    
+      
+
     </ul>
  
       }
-              <Spacer x={9}/>
-
+      <Spacer y={6}/>
       <Footer/>
       </Box>
-
     </div>
-    
     );
   };
-  

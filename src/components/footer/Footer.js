@@ -3,6 +3,7 @@ import {
   Box,
   chakra,
   Container,
+  Spacer,
   Stack,
   Text,
   useColorModeValue,
@@ -39,6 +40,7 @@ const SocialButton = ({ children, label, href, bgColor, hoverBgColor }) => {
     </chakra.button>
   );
 };
+
 
 export default function Footer() {
   return (
