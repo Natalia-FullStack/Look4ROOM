@@ -121,8 +121,6 @@ export default function Habitacion() {
         
         return;
       } 
-
-
       const docData = {
         ...habitacion,
         usuarioUID: user.uid
@@ -136,8 +134,7 @@ export default function Habitacion() {
         toast.info("Esta habitación ya está en tu lista de favoritos");
         return;
       }
-
-      
+   
       const docRef = await addDoc(favoritosRef, docData);
       toast.success("¡Has añadido esta habitación a tu lista de favoritos!");
     } catch (error) {
@@ -271,31 +268,24 @@ export default function Habitacion() {
   </MapContainer>
   }
   <Spacer y={2.5}/>
-    <form onSubmit={sendEmail}id='formMobile' style={{border: '1px solid #000', borderRadius: '6px', padding: '20px'}}>
 
+<form onSubmit={sendEmail}id='formMobile' style={{border: '1px solid #000', borderRadius: '6px', padding: '20px'}}>
   <Box display="flex" flexDirection="row" >
       <Avatar src={avatarUrl} size="lg" />
     
         <Text h5>Contactar con {habitacion.nombreVendedor}</Text>
         </Box>
         <Spacer y={1} />
-        <Input width='140px' required={true} label="Nombre" placeholder="Nombre" />
+        <Input width='140px' name="Nombre" required={true} label="Nombre" placeholder="Nombre" />
         <Spacer y={0.8} />
-        <Input width='140px' required={true} label="Correo electrónico" placeholder="Correo electrónico" />
+        <Input width='140px'name="email" required={true} label="Correo electrónico" placeholder="Correo electrónico" />
         <Spacer y={0.8} />
         <div id='destinatario'>
         <Input required={true} name="destinatario" width='15px' label="Destinatario" value={habitacion.emailVendedor} isBordered readOnly />
         </div>
         <Spacer y={2} />
         
-        <Textarea
-  bordered
-  width="100%"
-  minRows={7}
-  labelPlaceholder="Escribe tu mensaje aquí"
-  name="mensaje"
-  
-/>
+        <Textarea bordered width="100%" minRows={7} labelPlaceholder="Escribe tu mensaje aquí" name="mensaje" />
 
 <Spacer y={2} />
 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

@@ -16,7 +16,7 @@ export default function RoomsMadrid(){
     useEffect(()=>{
         const getHabitaciones=async()=>{
           setLoading(true)
-         const datos=await getDocs(query(collection(db, 'habitaciones'),where ('direccion.ciudad', '==', 'barcelona' )));
+         const datos=await getDocs(query(collection(db, 'habitaciones'),where ('direccion.ciudad', '==', 'Barcelona' )));
          const habitaciones = [];
         datos.forEach((habitacion) => {
       habitaciones.push(habitacion.data());

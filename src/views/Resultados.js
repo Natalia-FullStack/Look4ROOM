@@ -36,7 +36,6 @@ useEffect(() => {
   const getHabitaciones = async () => {
     setLoading(true);
 
-  
     const datos = await getDocs(collection(db, "habitaciones"));
     const habitaciones = datos.docs
     .map((doc) => doc.data())
@@ -44,9 +43,6 @@ useEffect(() => {
       normalizeString(habitacion.direccion.ciudad).includes(normalizeString(searchTerm))
     );
    
-    
-
-
     setHabitaciones(habitaciones);
     setLoading(false);
   }

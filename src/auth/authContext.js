@@ -90,7 +90,7 @@ export function AuthProvider({children}){
             if(error.code==="auth/email-already-in-use"){
                 throw new Error("Este email ya está en uso")
             } else if  (error.code==="auth/weak-password"){
-                throw new Error("La contraseña tiene que superar los 6 caracteres")
+                throw new Error("La contraseña tiene al menos 8 caracteres y contener al menos un carácter especial.")
             }   else if (error.code==="auth/invalid-email"){
                 throw new Error("El email no es válido. Asegúrate de que no hay espacios en blanco")
             } else if (error.code==="auth/operation-not-allowed"){
@@ -102,12 +102,12 @@ export function AuthProvider({children}){
 
 
 
-
         }
 
     }
 
-    //Contraseña olvidada
+    //resetar contraseña 
+    
     const resetPassword=async(email)=>{
         try{
             const response= await sendPasswordResetEmail(auth, email)
@@ -137,7 +137,6 @@ export function AuthProvider({children}){
         try{
             const response= await signInWithEmailAndPassword(auth, email, password)
 
-
         } catch(error){
             if(error.code==="auth/wrong-password"){
                 throw new Error("La contraseña es incorrecta")
@@ -157,7 +156,6 @@ export function AuthProvider({children}){
             }
         }
        
-
     }
 
 

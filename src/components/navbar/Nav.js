@@ -52,6 +52,7 @@ export default function Nav() {
       setError(error.message);
       toast.error(error.message);
     }
+    console.log(error);
   }
 
   const goToRegister = () => {

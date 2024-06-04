@@ -126,7 +126,6 @@ const handleImageChange=(e)=>{
           <Row justify="flex-start">
             <Checkbox value={selected} onChange={setSelected} isRequired/>
             <Spacer x={0.2}/><Text size={14}>Al registrarme, acepto la <Link onClick={() => setVisible(true)}>política de privacidad</Link></Text>
-            
           </Row>
 
       
