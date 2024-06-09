@@ -314,9 +314,9 @@ export default function Habitacion() {
     </Box>
 
     <Spacer y={1} />
-      <Input width="100%"required={true} label="Nombre" placeholder="Nombre" />
+      <Input width="100%" name="Nombre" required={true} label="Nombre" placeholder="Nombre" />
     <Spacer y={0.8} />
-      <Input width="100%" required={true} label="Correo electrónico" placeholder="Correo electrónico" />
+      <Input width="100%" name="email"  required={true} label="Correo electrónico" placeholder="Correo electrónico" />
     <Spacer y={0.8} />
     <div id="destinatario">
       <Input required={true} name="destinatario" width='200px' label="Destinatario" value={habitacion.emailVendedor} isBordered readOnly />
